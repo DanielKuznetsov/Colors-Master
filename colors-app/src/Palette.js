@@ -5,6 +5,7 @@ import Navbar from "./Navbar.js";
 import { generatePalette } from "./colorHelpers";
 import { seedColors } from "./seedColors";
 import "./Palette.scss";
+import PaletteFooter from "./PaletteFooter.js";
 
 export default function Palette() {
   const { paletteId } = useParams(); //useParams to get the :paletteId
@@ -47,12 +48,10 @@ export default function Palette() {
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
+        showingAllColors={true}
       />
       <div className="Palette-colors">{colorBoxes}</div>
-      <footer className="Palette-footer">
-        {palette.paletteName}
-        <span className="emoji">{palette.emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
 }
