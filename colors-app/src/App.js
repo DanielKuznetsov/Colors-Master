@@ -13,7 +13,7 @@ function App() {
       <Route
         exact
         path="/palette/:paletteId/:colorId"
-        element={<SingleColorPalette />}
+        element={<SingleColorPalette palettes={seedColors} />}
       />
     </Routes>
   );
