@@ -1,8 +1,33 @@
 .Pallete {
-    height: 100vh;
-    overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 
-    .Pallete-colors {
-        height: 90%;
+  .Pallete-colors {
+    height: 90%;
+  }
+
+  .Slider {
+    width: 34rem;
+    margin: 0 1rem;
+    display: inline-block;
+
+    .rc-slider-track {
+      background-color: transparent;
     }
+    .rc-slider-handle,
+    .rc-slider-handle:active,
+    .rc-slider-handle:focus,
+    .rc-slider-handle:hover {
+      background-color: green;
+      outline: none;
+      border: 2px solid green;
+      box-shadow: none;
+      width: 13px;
+      height: 13px;
+      margin-top: -3px;
+    }
+    .rc-slider-rail {
+      height: 8px;
+    }
+  }
 }
