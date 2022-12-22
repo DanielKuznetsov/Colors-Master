@@ -22,6 +22,7 @@ const styles = {
     width: "100%",
     justifyContent: "space-between",
     color: "#fff",
+    margin: "2rem 0",
   },
   palettes: {
     width: "100%",
