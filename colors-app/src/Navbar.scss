@@ -1,0 +1,53 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 6vh;
+
+  .logo {
+    margin-right: 1.5rem;
+    padding: 0 1.5rem;
+    font-size: 2rem;
+    background-color: #eceff1;
+    font-family: Roboto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+  }
+
+  .slider-container {
+    span {
+      font-size: 1.6rem;
+    }
+  }
+
+  .Slider {
+    width: 34rem;
+    margin: 0 1rem;
+    display: inline-block;
+
+    .rc-slider-track {
+      background-color: transparent;
+    }
+    .rc-slider-handle,
+    .rc-slider-handle:active,
+    .rc-slider-handle:focus,
+    .rc-slider-handle:hover {
+      background-color: green;
+      outline: none;
+      border: 2px solid green;
+      box-shadow: none;
+      width: 13px;
+      height: 13px;
+      margin-top: -3px;
+    }
+    .rc-slider-rail {
+      height: 8px;
+    }
+  }
+}
