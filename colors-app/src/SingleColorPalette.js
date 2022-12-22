@@ -7,6 +7,7 @@ import { generatePalette } from "./colorHelpers";
 import ColorBox from "./Color-box.js";
 import Navbar from "./Navbar.js";
 import PaletteFooter from "./PaletteFooter";
+import { Link } from "react-router-dom";
 
 export default function SingleColorPalette() {
   const { paletteId } = useParams();
@@ -53,9 +54,16 @@ export default function SingleColorPalette() {
   };
 
   return (
-    <div className="Palette">
+    <div className="SingleColorPalette Palette">
       <Navbar handleChange={changeFormat} showingAllColors={false} />
-      <div className="Palette-colors">{colorBoxes}</div>
+      <div className="Palette-colors">
+        {colorBoxes}
+        <div className="go-back ColorBox">
+          <Link to={`/palette/${paletteId}`} className="back-button">
+            GO BACK
+          </Link>
+        </div>
+      </div>
       <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
