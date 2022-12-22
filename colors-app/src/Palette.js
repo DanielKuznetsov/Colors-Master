@@ -1,47 +1,51 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import ColorBox from "./Color-box.js";
-import "./Pallete.scss";
 import Navbar from "./Navbar.js";
+import { generatePalette } from "./colorHelpers";
+import { seedColors } from "./seedColors";
+import "./Palette.scss";
 
-export default class Pallete extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { level: 500, format: "hex" };
-    this.changeLevel = this.changeLevel.bind(this);
-    this.changeFormat = this.changeFormat.bind(this);
-  }
+export default function Palette() {
+  const { paletteId } = useParams(); //useParams to get the :paletteId
 
-  changeLevel(level) {
-    this.setState({ level });
-  }
+  const findPalette = (id) => {
+    //same findPalette function in the lesson
+    return seedColors.find(function (palette) {
+      return palette.id === id;
+    });
+  };
 
-  changeFormat(val) {
-    this.setState({ format: val });
-  }
+  //this used to be the palette prop, now simply defined inside of Palette.js
+  const palette = generatePalette(findPalette(paletteId));
 
-  render() {
-    const { colors, paletteName, emoji } = this.props.palette;
-    const { level, format } = this.state;
+  const [level, setLevel] = useState(500);
+  const [format, setFormat] = useState("hex");
 
-    const colorBoxes = colors[level].map((color) => (
-      <ColorBox key={color.id} background={color[format]} name={color.name} />
-    ));
+  const colorBoxes = palette.colors[level].map((color) => (
+    <ColorBox background={color[format]} name={color.name} key={color.id} />
+  ));
 
-    return (
-      <div className="Palette">
-        <Navbar
-          level={level}
-          handleChange={this.changeFormat}
-          changeLevel={this.changeLevel}
-        />
+  const changeLevel = (level) => {
+    setLevel(level);
+  };
 
-        <div className="Palette-colors">{colorBoxes}</div>
+  const changeFormat = (val) => {
+    setFormat(val);
+  };
 
-        <footer className="Palette-footer">
-          <p>{paletteName}</p>
-          <span className="emoji">{emoji}</span>
-        </footer>
-      </div>
-    );
-  }
+  return (
+    <div className="Palette">
+      <Navbar
+        level={level}
+        changeLevel={changeLevel}
+        handleChange={changeFormat}
+      />
+      <div className="Palette-colors">{colorBoxes}</div>
+      <footer className="Palette-footer">
+        {palette.paletteName}
+        <span className="emoji">{palette.emoji}</span>
+      </footer>
+    </div>
+  );
 }
