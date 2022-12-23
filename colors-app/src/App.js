@@ -4,6 +4,7 @@ import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import { seedColors } from "./seedColors";
 import SingleColorPalette from "./SingleColorPalette";
+import NewPaletteForm from "./NewPaletteForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         path="/palette/:paletteId/:colorId"
         element={<SingleColorPalette palettes={seedColors} />}
       />
+      <Route exact path="/palette/new" element={<NewPaletteForm />} />
     </Routes>
   );
 }
