@@ -9,6 +9,7 @@ export default class DraggableColorBox extends Component {
         style={{ backgroundColor: this.props.color }}
       >
         {this.props.color}
+        {this.props.name}
       </div>
     );
   }
