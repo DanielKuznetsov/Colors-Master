@@ -1,0 +1,73 @@
+.navBtns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 2rem;
+
+  .valForm {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.css-1ztf6k-MuiPaper-root-MuiAppBar-root {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.drawerContainer {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    
+    & > * {
+        height: 4rem;
+        padding: 0 2rem;
+        font-size: 1.2rem;
+    }
+  }
+
+  .colorPicker {
+    width: 100% !important;
+    margin-top: 2rem;
+  }
+}
+
+.validForm {
+  width: 100%;
+
+  .colorNameInput {
+    width: 100% !important;
+    margin-top: 1.5rem;
+  }
+}
+
+.addColor {
+  width: 100% !important;
+  padding: 1rem !important;
+  margin-top: 1rem !important;
+  font-size: 2rem !important;
+  color: #fff !important;
+}
+
+.css-17fnttk-MuiPaper-root-MuiAppBar-root {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.css-1k455el {
+  align-self: flex-end !important;
+}
+
+.colorPickerTitle {
+    margin-top: 4rem;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+}

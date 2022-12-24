@@ -16,6 +16,8 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useNavigate } from "react-router-dom";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
+import { Link } from "react-router-dom";
+import "./NewPaletteForm.scss";
 
 const drawerWidth = 400;
 
@@ -144,9 +146,7 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
   const addRandomColor = () => {
     const allColors = palettes.map((palette) => palette.colors).flat();
     const rand = Math.floor(Math.random() * allColors.length);
-
     const randomColor = allColors[rand];
-    console.log(randomColor);
 
     setColors([...colors, randomColor]);
   };
@@ -155,8 +155,9 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
 
   return (
     <Box sx={{ display: "flex" }}>
+      {/* <PaletteFormNavbar open={open} /> */}
       <CssBaseline />
-      <AppBar position="fixed" open={open} color="default">
+      <AppBar className="appBar" position="fixed" open={open} color="default">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -168,9 +169,11 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Create a Palette
           </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
+        </Toolbar>
+        <div className="navBtns">
+          <ValidatorForm className="valForm" onSubmit={handleSubmit}>
             <TextValidator
               label="Palette Name"
               value={newPaletteName}
@@ -182,7 +185,12 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
               Save Palette
             </Button>
           </ValidatorForm>
-        </Toolbar>
+          <Link to="/">
+            <Button variant="contained" color="secondary">
+              Go Back!
+            </Button>
+          </Link>
+        </div>
       </AppBar>
       <Drawer
         sx={{
@@ -191,6 +199,9 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           },
         }}
         variant="persistent"
@@ -203,56 +214,66 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <h4>Design Your Palette</h4>
-        <div>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => setColors([])}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addRandomColor}
-            disabled={isPaletteFull}
-            style={{color: isPaletteFull ? "black" : "white"}}
-          >
-            Random Color
-          </Button>
-        </div>
-        <ChromePicker
-          color={currentColor}
-          onChangeComplete={updateCurrentColor}
-        />
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator
-            value={newColorName}
-            onChange={handleChange}
-            validators={[
-              "required",
-              "isColorNameUnique",
-              "isColorUnique",
-              "required",
-            ]}
-            errorMessages={[
-              "Enter a color name",
-              "Color name must be unique",
-              "Color already used",
-              "The name field is required",
-            ]}
+        <div className="drawerContainer">
+          <h4 className="colorPickerTitle">Design Your Palette</h4>
+          <div className="buttons">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => setColors([])}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addRandomColor}
+              disabled={isPaletteFull}
+              style={{ color: isPaletteFull ? "black" : "white" }}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ChromePicker
+            className="colorPicker"
+            color={currentColor}
+            onChangeComplete={updateCurrentColor}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ backgroundColor: isPaletteFull ? "grey" : currentColor, color: isPaletteFull ? "white" : "black" }}
-            type="submit"
-            disabled={isPaletteFull}
-          >
-            {isPaletteFull ? "Palette Full" : "Add Color"}
-          </Button>
-        </ValidatorForm>
+          <ValidatorForm className="validForm" onSubmit={addNewColor}>
+            <TextValidator
+            placeholder="Add color name"
+              className="colorNameInput"
+              variant="filled"
+              value={newColorName}
+              onChange={handleChange}
+              validators={[
+                "required",
+                "isColorNameUnique",
+                "isColorUnique",
+                "required",
+              ]}
+              errorMessages={[
+                "Enter a color name",
+                "Color name must be unique",
+                "Color already used",
+                "The name field is required",
+              ]}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              style={{
+                backgroundColor: isPaletteFull ? "grey" : currentColor,
+                color: isPaletteFull ? "white" : "black",
+              }}
+              type="submit"
+              disabled={isPaletteFull}
+              className="addColor"
+            >
+              {isPaletteFull ? "Palette Full" : "Add Color"}
+            </Button>
+          </ValidatorForm>
+        </div>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
