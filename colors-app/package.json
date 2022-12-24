@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emoji-mart/data": "^1.1.0",
+    "@emoji-mart/react": "^1.1.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
@@ -14,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "array-move": "^4.0.0",
     "chroma-js": "^2.4.2",
+    "emoji-mart": "^5.4.0",
     "rc-slider": "^10.1.0",
     "react": "^18.2.0",
     "react-color": "^2.17.3",

@@ -6,6 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import Picker from "@emoji-mart/react";
 
 export default function PaletteMetaForm({
   handleSubmit,
@@ -13,14 +14,17 @@ export default function PaletteMetaForm({
   newPaletteName,
   colors,
 }) {
-  const [open, setOpen] = useState(false);
+  //   const [open, setOpen] = useState(false);
+  const [stage, setStage] = useState("");
 
   const handleClickOpen = () => {
-    setOpen(true);
+    // setOpen(true);
+    setStage("form");
   };
 
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    setStage("");
   };
 
   useEffect(() => {
@@ -31,17 +35,29 @@ export default function PaletteMetaForm({
     });
   });
 
+  const showEmojiPicker = () => {
+    setStage("emoji");
+  };
+
+  const savePalette = (emoji) => {
+    handleSubmit(emoji.native);
+  };
+
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         Save
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={stage === "emoji"} onClose={handleClose}>
+        <Picker onEmojiSelect={savePalette} />
+      </Dialog>
+      <Dialog open={stage === "form"} onClose={handleClose}>
         <DialogTitle>Choose a Palette Name</DialogTitle>
-        <ValidatorForm className="valForm" onSubmit={handleSubmit}>
+        <ValidatorForm className="valForm" onSubmit={showEmojiPicker}>
           <DialogContent>
             <DialogContentText>
-              Please enter a name for your new beatiful palette. Make sure it's unique!
+              Please enter a name for your new beatiful palette. Make sure it's
+              unique!
             </DialogContentText>
             <TextValidator
               label="Palette Name"

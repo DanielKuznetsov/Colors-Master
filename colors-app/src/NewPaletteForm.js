@@ -19,6 +19,7 @@ import { arrayMove } from "react-sortable-hoc";
 import { Link } from "react-router-dom";
 import "./NewPaletteForm.scss";
 import PaletteMetaForm from "./PaletteMetaForm";
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
 const drawerWidth = 400;
 
@@ -120,16 +121,18 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
 
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
       return palettes.every(
-        ({ paletteName }) => paletteName !== value.toLowerCase()
+        ({ paletteName }) =>
+          paletteName.toLowerCase() !== newPaletteName.toLowerCase().trim()
       );
     });
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (emoji) => {
     const newPalette = {
       paletteName: newPaletteName,
       colors: colors,
       id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      emoji,
     };
     saveNewPalette(newPalette);
 
@@ -167,7 +170,8 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <AddToPhotosIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Create a Palette
