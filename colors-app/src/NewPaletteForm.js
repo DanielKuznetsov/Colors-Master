@@ -65,10 +65,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function NewPaletteForm({ saveNewPalette, palettes }) {
+export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
+  const { maxColors = 20 } = props;
+
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState("teal");
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState([...palettes[0].colors]);
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
   const navigate = useNavigate();
@@ -139,6 +141,18 @@ export default function NewPaletteForm({ saveNewPalette, palettes }) {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
 
+  const addRandomColor = () => {
+    const allColors = palettes.map((palette) => palette.colors).flat();
+    const rand = Math.floor(Math.random() * allColors.length);
+
+    const randomColor = allColors[rand];
+    console.log(randomColor);
+
+    setColors([...colors, randomColor]);
+  };
+
+  const isPaletteFull = colors.length >= maxColors;
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -191,10 +205,20 @@ export default function NewPaletteForm({ saveNewPalette, palettes }) {
         <Divider />
         <h4>Design Your Palette</h4>
         <div>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setColors([])}
+          >
             Clear Palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addRandomColor}
+            disabled={isPaletteFull}
+            style={{color: isPaletteFull ? "black" : "white"}}
+          >
             Random Color
           </Button>
         </div>
@@ -222,10 +246,11 @@ export default function NewPaletteForm({ saveNewPalette, palettes }) {
           <Button
             variant="contained"
             color="primary"
-            style={{ backgroundColor: currentColor }}
+            style={{ backgroundColor: isPaletteFull ? "grey" : currentColor, color: isPaletteFull ? "white" : "black" }}
             type="submit"
+            disabled={isPaletteFull}
           >
-            Add Color
+            {isPaletteFull ? "Palette Full" : "Add Color"}
           </Button>
         </ValidatorForm>
       </Drawer>
@@ -237,14 +262,6 @@ export default function NewPaletteForm({ saveNewPalette, palettes }) {
           axis="xy"
           onSortEnd={onSortEnd}
         />
-        {/* {colors.map((color, i) => (
-          <DraggableColorBox
-            key={color.name}
-            color={color.color}
-            name={color.name}
-            handleClick={() => removeColor(color.name)}
-          />
-        ))} */}
       </Main>
     </Box>
   );
