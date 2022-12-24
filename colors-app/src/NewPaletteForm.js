@@ -18,6 +18,7 @@ import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import { Link } from "react-router-dom";
 import "./NewPaletteForm.scss";
+import PaletteMetaForm from "./PaletteMetaForm";
 
 const drawerWidth = 400;
 
@@ -173,18 +174,12 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
           </Typography>
         </Toolbar>
         <div className="navBtns">
-          <ValidatorForm className="valForm" onSubmit={handleSubmit}>
-            <TextValidator
-              label="Palette Name"
-              value={newPaletteName}
-              onChange={handleTValidatorChange}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={["Enter a palette name", "Name is already taken"]}
-            />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm
+            handleSubmit={handleSubmit}
+            newPaletteName={newPaletteName}
+            handleTValidatorChange={handleTValidatorChange}
+            colors={colors}
+          />
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go Back!
@@ -241,7 +236,7 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
           />
           <ValidatorForm className="validForm" onSubmit={addNewColor}>
             <TextValidator
-            placeholder="Add color name"
+              placeholder="Add color name"
               className="colorNameInput"
               variant="filled"
               value={newColorName}
