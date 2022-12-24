@@ -43,6 +43,7 @@ const styles = {
 class PaletteList extends Component {
   render() {
     const { palettes, classes } = this.props;
+
     return (
       <div className={classes.root}>
         <div className={classes.container}>

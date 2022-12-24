@@ -7,12 +7,12 @@ import { seedColors } from "./seedColors";
 import "./Palette.scss";
 import PaletteFooter from "./PaletteFooter.js";
 
-export default function Palette() {
+export default function Palette({ palettes }) {
   const { paletteId } = useParams(); //useParams to get the :paletteId
 
   const findPalette = (id) => {
     //same findPalette function in the lesson
-    return seedColors.find(function (palette) {
+    return palettes.find(function (palette) {
       return palette.id === id;
     });
   };

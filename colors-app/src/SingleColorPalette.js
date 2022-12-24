@@ -9,14 +9,14 @@ import Navbar from "./Navbar.js";
 import PaletteFooter from "./PaletteFooter";
 import { Link } from "react-router-dom";
 
-export default function SingleColorPalette() {
+export default function SingleColorPalette({palettes}) {
   const { paletteId } = useParams();
   const { colorId } = useParams();
   const [format, setFormat] = useState("hex");
 
   const findPalette = (id) => {
     //same findPalette function in the lesson
-    return seedColors.find(function (palette) {
+    return palettes.find(function (palette) {
       return palette.id === id;
     });
   };
