@@ -8,7 +8,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
@@ -149,8 +148,18 @@ export default function NewPaletteForm({ saveNewPalette, palettes }, props) {
 
   const addRandomColor = () => {
     const allColors = palettes.map((palette) => palette.colors).flat();
-    const rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true;
+
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+
+      isDuplicateColor = colors.some(
+        (color) => color.name === randomColor.name
+      );
+    }
 
     setColors([...colors, randomColor]);
   };

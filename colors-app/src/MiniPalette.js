@@ -9,9 +9,7 @@ const styles = {
     padding: "0.8rem",
     position: "relative",
     overflow: "hidden",
-    "&:hover": {
-      cursor: "pointer",
-    },
+    cursor: "pointer",
   },
   colors: {
     backgroundColor: "#dae1e4",
@@ -44,12 +42,12 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-  },
+  }
 };
 
 function MiniPalette(props) {
   const { classes, paletteName, emoji, colors, id } = props;
-  
+
   const miniColorBoxes = colors.map((color) => (
     <div
       className={classes.miniColor}

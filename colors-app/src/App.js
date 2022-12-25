@@ -5,8 +5,9 @@ import PaletteList from "./PaletteList";
 import { seedColors } from "./seedColors";
 import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-function App() {
+function App(props) {
   const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
   const [palettes, setPalettes] = useState(savedPalettes || seedColors);
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="*" element={<PaletteList palettes={palettes} />} />
       <Route exact path="/" element={<PaletteList palettes={palettes} />} />
       <Route
         exact
