@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import "./SingleColorPalette.scss";
-import { seedColors } from "./seedColors";
+import "../styles/SingleColorPalette.scss";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { generatePalette } from "./colorHelpers";
+import { generatePalette } from "../helpers/colorHelpers";
 import ColorBox from "./Color-box.js";
 import Navbar from "./Navbar.js";
 import PaletteFooter from "./PaletteFooter";

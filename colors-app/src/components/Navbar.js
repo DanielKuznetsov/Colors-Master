@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { IconButton, Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import "./Navbar.scss";
+import "../styles/Navbar.scss";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {

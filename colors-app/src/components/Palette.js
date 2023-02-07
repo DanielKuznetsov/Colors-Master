@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+import "../styles/Palette.scss";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ColorBox from "./Color-box.js";
 import Navbar from "./Navbar.js";
-import { generatePalette } from "./colorHelpers";
-import { seedColors } from "./seedColors";
-import "./Palette.scss";
 import PaletteFooter from "./PaletteFooter.js";
+import { generatePalette } from "../helpers/colorHelpers";
 
 export default function Palette({ palettes }) {
   const { paletteId } = useParams(); //useParams to get the :paletteId
 
   const findPalette = (id) => {
-    //same findPalette function in the lesson
+    // same findPalette function in the lesson
     return palettes.find(function (palette) {
       return palette.id === id;
     });
   };
 
-  //this used to be the palette prop, now simply defined inside of Palette.js
+  // this used to be the palette prop, now simply defined inside of Palette.js
   const palette = generatePalette(findPalette(paletteId));
 
   const [level, setLevel] = useState(500);

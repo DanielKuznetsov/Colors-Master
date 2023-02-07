@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { arrayMove } from "react-sortable-hoc";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -11,12 +15,8 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { useNavigate } from "react-router-dom";
 import DraggableColorList from "./DraggableColorList";
-import { arrayMove } from "react-sortable-hoc";
-import { Link } from "react-router-dom";
-import "./NewPaletteForm.scss";
+import "../styles/NewPaletteForm.scss";
 import PaletteMetaForm from "./PaletteMetaForm";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 

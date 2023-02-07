@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MiniPalette from "./MiniPalette";
 import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-import bg from "./bg.svg"
+import bg from "../bg.svg"
 
 const styles = {
   root: {

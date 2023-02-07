@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import "./DraggableColorBox.scss";
+import "../styles/DraggableColorBox.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { SortableElement } from "react-sortable-hoc";
 
